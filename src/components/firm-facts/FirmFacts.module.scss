@@ -1,0 +1,114 @@
+/* 
+Keywords: TASK, REMINDER
+*/
+$min-width: 768px;
+$max-width: 1680px;
+$gap: 18px;
+$min-column-width: 364px;
+$min-row-height: 322px;
+$font-size: 60px;
+$font-weight: 400;
+$line-height: 66px;
+$clamp-gap-min: 12px;
+$clamp-gap-max: 2vw;
+$clamp-font-size-min: 14px;
+$clamp-font-size-max: 1.5vw;
+$clamp-font-size-final: 19px;
+$clamp-column-width-min: 180px;
+$clamp-column-width-max: 20vw;
+$clamp-row-height-min: 160px;
+$clamp-row-height-max: 60vh;
+$color-white: white;
+$wrapper-margin-top: 100px;
+$color-transparent: transparent;
+
+.wrapper {
+  background-color: $color-transparent !important; //Just to make sure
+  margin-top: $wrapper-margin-top; //TASK - main container away from the top as requestion
+  margin-inline: auto;
+  min-width: $min-width;
+  max-width: $max-width;
+  position: relative
+}
+
+.headerCloseDiv {
+  position: absolute;
+  right: 0;
+  top: calc($wrapper-margin-top - 150px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.headerDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerCloseButton {
+  background-color: $color-transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: rotate(90deg);
+    scale: 1.3;
+  }
+}
+
+.headerCloseIcon {
+  flex-shrink: 0;
+  background-color: $color-transparent;
+}
+
+.headerTitle {
+  margin-bottom: 22px;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  letter-spacing: 2px;
+  line-height: $line-height;
+  text-align: left;
+}
+
+.headerLine {
+  width: 100%;
+  border: 1px solid $color-white;
+  opacity: 20%;
+  margin-bottom: 40px;
+}
+
+.gridContainer {
+  margin-top: 50px;
+  width: 100%;
+  display: grid;
+  gap: $gap;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax($min-row-height, auto);
+  grid-auto-columns: minmax($min-column-width, auto);
+
+  & > div:first-child {
+    grid-column: 1;
+    grid-row: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; //REMINDER: prevent changes
+  }
+}
+
+/************************************************************************************************
+ * TASK - Stretch the grid naturally as per resquest
+ ************************************************************************************************/
+@media (min-width: $min-width) and (max-width: $max-width) {
+  .gridContainer {
+    gap: clamp($clamp-gap-min, $clamp-gap-max, $gap);
+    grid-template-columns: repeat(4, minmax(clamp($clamp-column-width-min, $clamp-column-width-max, $min-column-width), 1fr));
+    grid-auto-rows: minmax(clamp($clamp-row-height-min, $clamp-row-height-max, $min-row-height), auto);
+  }
+
+  .wrapper {
+    font-size: clamp($clamp-font-size-min, $clamp-font-size-max, $clamp-font-size-final); //TASK - font naturally grows & shrink
+  }
+}

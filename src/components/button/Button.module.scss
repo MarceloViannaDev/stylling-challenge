@@ -1,0 +1,98 @@
+$btn-padding: 26px 28px;
+$btn-height: 70px;
+$btn-line-height: 24px;
+$btn-bg-color: #2d3e4e;
+$disabled-color: #ccc;
+$min-font-size: 14px;
+$max-font-size: 19px;
+$min-line-height: 20px;
+$max-line-height: 24px;
+$icon-size: 22px;
+$transition-duration: 0.5s;
+$transition-ease: ease;
+$background-color-hover: #1a2b3c;
+$background-color-white: white;
+$background-color-hover: #07c06a;
+$border-width: 2px;
+$border-style: solid;
+
+.btnBase {
+  width: 310px;
+  height: $btn-height;
+  padding: $btn-padding;
+  font-size: 17px;
+  font-size: clamp($min-font-size, 1.5vw, $max-font-size);
+  line-height: clamp($min-line-height, 1.8vw, $max-line-height);
+  letter-spacing: -0.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  border: $border-width $border-style transparent;
+  border-radius: $btn-height;
+  text-align: left;
+  color: inherit;
+  background-color: $btn-bg-color;
+  overflow: hidden;
+  transition: background-color $transition-duration $transition-ease, border-color $transition-duration $transition-ease;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: $disabled-color;
+    cursor: not-allowed;
+  }
+
+  &.hovered,
+  &.hoveredSecond {
+    &:not(:disabled) {
+      background-color: transparent;
+      border-color: $background-color-white;
+    }
+  }
+
+  &.hoveredSecond {
+    &:not(:disabled) {
+      background-color: $background-color-hover;
+      border-color: $background-color-hover;
+    }
+  }
+}
+
+.default {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+
+  span {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+  }
+}
+
+.icon {
+  display: flex;
+  gap: $icon-size;
+  align-items: center;
+
+  span {
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: $btn-line-height;
+    white-space: normal;
+  }
+}
+
+.btnIcon {
+  .icon {
+    flex-shrink: 0;
+    width: $icon-size;
+    height: $icon-size;
+  }
+}

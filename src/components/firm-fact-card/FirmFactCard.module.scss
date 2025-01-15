@@ -1,0 +1,57 @@
+$background-color-white: white;
+$background-color-hover: #07c06a;
+$padding: 20px;
+$padding-top: 40px;
+$border-width: 15px;
+$border-hover: #07c06a;
+$transition: all 0.3s ease;
+$cursor-pointer: pointer;
+$cursor-not-allowed: not-allowed;
+
+.card {
+	width: 100%; // Largura ajustável no grid
+	background-color: $background-color-white;
+	padding: $padding;
+	box-sizing: border-box; // Inclui borda no tamanho total
+	display: flex;
+	justify-content: center; // Centraliza horizontalmente
+	align-items: center; // Centraliza verticalmente
+	transition: $transition;
+  border: 15px solid transparent;
+	cursor: $cursor-pointer;
+
+  
+	&.cardDefault:hover {
+    background-color: $background-color-hover;
+
+    .btnBase {
+      background-color: white;
+    }
+	}
+  
+  &:first-child:hover {
+    background-color: $background-color-white;
+    cursor: default;
+  }
+
+	/* Estilo do card com borda no hover */
+	&.cardBorder {
+		align-items: start; // Alinhamento inicial
+		padding: calc($padding - $border-width); // Compensa o espaço ocupado pela borda
+		padding-top: $padding-top; // Ajusta o topo para incluir a borda
+		box-sizing: border-box;
+
+		&:hover {
+			background-color: $background-color-white;
+			border: $border-width solid $border-hover; // Usa outline no lugar de border
+		}
+	}
+
+	/* Estilo do card desativado */
+	&.cardDisabled {
+		align-items: start;
+		padding-top: $padding-top;
+		cursor: $cursor-not-allowed;
+	}
+
+}
